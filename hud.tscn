@@ -1,0 +1,91 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmk3vl6fdugtw"]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_do4c1"]
+[ext_resource type="FontFile" uid="uid://ck35wm3t08vyt" path="res://fonts/Xolonium-Regular.ttf" id="1_myakd"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_do4c1")
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -102.0
+offset_right = 102.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_myakd")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -39.0
+offset_right = 176.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_myakd")
+theme_override_font_sizes/font_size = 64
+text = "Bruh Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="MessageTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -170.0
+offset_right = 100.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_myakd")
+theme_override_font_sizes/font_size = 64
+text = "Start"
+
+[node name="ScoreUp" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 24.0
+offset_top = 8.0
+offset_right = 54.0
+offset_bottom = 36.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_myakd")
+theme_override_font_sizes/font_size = 16
+text = "+"
+
+[node name="ScoreDown" type="Button" parent="."]
+offset_left = 264.0
+offset_top = 40.0
+offset_right = 294.0
+offset_bottom = 68.0
+theme_override_fonts/font = ExtResource("1_myakd")
+theme_override_font_sizes/font_size = 16
+text = "-"
+
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="button_down" from="ScoreUp" to="." method="_on_score_up_button_down"]
+[connection signal="button_up" from="ScoreUp" to="." method="_on_score_up_button_up"]
+[connection signal="button_down" from="ScoreDown" to="." method="_on_score_down_button_down"]
+[connection signal="button_up" from="ScoreDown" to="." method="_on_score_down_button_up"]
